@@ -2,7 +2,7 @@
 import "./App.css";
 
 // Components
-import PostList from "./features/PostList";
+import PostList from "./features/posts/PostList";
 
 // Database
 import { createClient } from "@supabase/supabase-js";

@@ -40,10 +40,13 @@ export const fetchPostsAsync = createAsyncThunk(
   "posts/fetchPosts",
   async (): Promise<PostType[]> => {
     try {
+      console.log("fetching posts");
       const { data, error } = await supabase.from("posts");
       if (error) {
+        console.log("error fetching posts", error);
         throw error;
       } else {
+        console.log("fetched posts", data);
         return data;
       }
     } catch (error) {
@@ -53,6 +56,8 @@ export const fetchPostsAsync = createAsyncThunk(
   }
 );
 
-export const selectPosts = (state: RootState) => state.posts.posts;
+export const selectAllPosts = (state: RootState) => state.posts.posts;
+export const getPostsStatus = (state: RootState) => state.posts.status;
+export const getPostsError = (state: RootState) => state.posts.error;
 
 export default postSlice.reducer;

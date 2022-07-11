@@ -5,7 +5,7 @@ import gfm from "remark-gfm";
 // Types
 import { PostType } from "../../types";
 
-function Post(post: PostType) {
+function Post({ post }: { post: PostType }) {
   return post.hidden ? (
     <></>
   ) : (
