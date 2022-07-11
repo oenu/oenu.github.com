@@ -4,7 +4,13 @@ import App from "./App";
 import "./index.css";
 
 // Mantine
-import { MantineProvider } from "@mantine/core";
+import {
+  MantineProvider,
+  AppShell,
+  Navbar,
+  Header,
+  Burger,
+} from "@mantine/core";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -15,7 +21,15 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         colorScheme: "dark",
       }}
     >
-      <App />
+      <AppShell
+      // header={
+      // <Header height={60} p="xs">
+      // {/* Header content */}
+      // </Header>
+      // }
+      >
+        <App />
+      </AppShell>
     </MantineProvider>
   </React.StrictMode>
 );
