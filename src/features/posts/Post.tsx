@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 
 // Types
-import { PostType } from "../types";
+import { PostType } from "../../types";
 
 function Post(post: PostType) {
   return post.hidden ? (

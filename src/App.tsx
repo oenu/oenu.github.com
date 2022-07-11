@@ -5,7 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 import "./App.css";
 
 // Components
-import Post from "./Components/Post";
+import Post from "./features/posts/Post";
 
 // Types
 import { PostType } from "./types";
