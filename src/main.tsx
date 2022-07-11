@@ -8,13 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 // Mantine
-import {
-  MantineProvider,
-  AppShell,
-  Navbar,
-  Header,
-  Burger,
-} from "@mantine/core";
+import { MantineProvider, AppShell } from "@mantine/core";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
