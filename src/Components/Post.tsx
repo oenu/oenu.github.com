@@ -12,6 +12,7 @@ function Post(post: PostType) {
     <div>
       <h1>{post.title}</h1>
       <ReactMarkdown remarkPlugins={[gfm]} children={post.body} />
+      post
     </div>
   );
 }

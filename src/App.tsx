@@ -44,7 +44,6 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header"> Triggering rebuild</header>
       {loading ? (
         <div>Loading...</div>
       ) : (
