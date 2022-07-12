@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 // Components
 import Post from "./Post";
+import { Center, Container, Stack } from "@mantine/core";
 
 // Types
 import { PostType } from "../../types";
@@ -22,9 +23,13 @@ function PostList() {
     if (posts === null) {
       content = <div>No posts found</div>;
     } else {
-      content = posts.map((post: PostType) => (
-        <Post key={post.id} post={post} />
-      ));
+      content = (
+        <Stack style={{ minWidth: "80vw" }}>
+          {posts.map((post: PostType) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </Stack>
+      );
     }
   } else if (postsStatus === "failed") {
     content = (
@@ -37,7 +42,7 @@ function PostList() {
     content = <div>No Post Status Provided</div>;
   }
 
-  return <>{content}</>;
+  return <Center>{content}</Center>;
 }
 
 export default PostList;
