@@ -5,7 +5,8 @@ import "./index.css";
 
 // Redux
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { setupStore } from "./redux/store";
+export const store = setupStore();
 
 // Mantine
 import { MantineProvider, AppShell } from "@mantine/core";
