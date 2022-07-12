@@ -3,33 +3,34 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
+// Redux
+import { Provider } from "react-redux";
+import { setupStore } from "./redux/store";
+export const store = setupStore();
+
 // Mantine
-import {
-  MantineProvider,
-  AppShell,
-  Navbar,
-  Header,
-  Burger,
-} from "@mantine/core";
+import { MantineProvider, AppShell } from "@mantine/core";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-      theme={{
-        colorScheme: "dark",
-      }}
-    >
-      <AppShell
-      // header={
-      // <Header height={60} p="xs">
-      // {/* Header content */}
-      // </Header>
-      // }
+    <Provider store={store}>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          colorScheme: "dark",
+        }}
       >
-        <App />
-      </AppShell>
-    </MantineProvider>
+        <AppShell
+        // header={
+        // <Header height={60} p="xs">
+        // {/* Header content */}
+        // </Header>
+        // }
+        >
+          <App />
+        </AppShell>
+      </MantineProvider>
+    </Provider>
   </React.StrictMode>
 );
