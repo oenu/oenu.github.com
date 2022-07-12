@@ -1,18 +1,24 @@
+// React
+import { useEffect } from "react";
+
+// Redux
+import { getPostsStatus, fetchPostsAsync } from "@/features/posts/postSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
 // Styles
 import "./App.css";
 
 // Components
 import PostList from "./features/posts/PostList";
 
-// Database
-import { createClient } from "@supabase/supabase-js";
-export const supabase = createClient(
-  "https://fexutrlesdaielcvnpiu.supabase.co",
-  /* cspell: disable-next-line */
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZleHV0cmxlc2RhaWVsY3ZucGl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc1NjIxMTAsImV4cCI6MTk3MzEzODExMH0.nnP00yRLtb3tjm3aHLlX4eyBYwGVfaVT9fMSllh17Jk"
-);
-
 function App() {
+  const dispatch = useAppDispatch();
+  const postsStatus = useAppSelector(getPostsStatus);
+  useEffect(() => {
+    if (postsStatus === "idle") {
+      dispatch(fetchPostsAsync());
+    }
+  }, [postsStatus, dispatch]);
   return (
     <div className="App">
       <PostList />
