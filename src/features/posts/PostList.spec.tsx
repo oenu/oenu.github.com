@@ -74,7 +74,6 @@ it("should render an error message", async () => {
       },
     },
   });
-  screen.debug();
 
   const errorMessage = screen.getByTestId("errorMessage");
   expect(errorMessage.innerHTML).toContain("Something went wrong");
