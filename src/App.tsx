@@ -1,63 +1,27 @@
-import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
+// React
+import { useEffect } from "react";
+
+// Redux
+import { getPostsStatus, fetchPostsAsync } from "@/features/posts/postSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 // Styles
 import "./App.css";
 
 // Components
-import Post from "./Components/Post";
-
-// Types
-import { PostType } from "./types";
-
-// Create a single supabase client for interacting with your database
-const supabase = createClient(
-  "https://fexutrlesdaielcvnpiu.supabase.co",
-  /* cspell: disable-next-line */
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZleHV0cmxlc2RhaWVsY3ZucGl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc1NjIxMTAsImV4cCI6MTk3MzEzODExMH0.nnP00yRLtb3tjm3aHLlX4eyBYwGVfaVT9fMSllh17Jk"
-);
+import PostList from "./features/posts/PostList";
 
 function App() {
-  const [posts, setPosts] = useState(Array<PostType>());
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const postsStatus = useAppSelector(getPostsStatus);
   useEffect(() => {
-    // Get posts from the database
-    const getPosts = async () => {
-      const { data, error } = await supabase.from("posts");
-
-      if (error) {
-        console.error(error);
-      }
-      if (data) {
-        setPosts(data);
-        setLoading(false);
-        console.log(data);
-      }
-
-      return () => {
-        console.log("unmounting");
-      };
-    };
-
-    getPosts();
-  }, []);
-
+    if (postsStatus === "idle") {
+      dispatch(fetchPostsAsync());
+    }
+  }, [postsStatus, dispatch]);
   return (
     <div className="App">
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        posts.map((post) => (
-          <Post
-            key={post.id}
-            body={post.body}
-            id={post.id}
-            title={post.title}
-            hidden={post.hidden}
-            created_at={post.created_at}
-          />
-        ))
-      )}
+      <PostList />
     </div>
   );
 }

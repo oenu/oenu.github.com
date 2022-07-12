@@ -4,4 +4,5 @@ export interface PostType {
   title: string;
   created_at: string;
   hidden: boolean;
+  link?: string;
 }
