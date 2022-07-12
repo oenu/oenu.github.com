@@ -1,23 +1,32 @@
-import React from "react";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+import gitHubIcon from "@/assets/github.png";
 
-import tsx from "react-syntax-highlighter/dist/cjs/languages/prism/tsx";
-import typescript from "react-syntax-highlighter/dist/cjs/languages/prism/typescript";
+// Code Formatting
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 // Components
-import { Card, Title } from "@mantine/core";
+import { Card, Title, Group, Image } from "@mantine/core";
 
 // Types
 import { PostType } from "../../types";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 function Post({ post }: { post: PostType }) {
   return post.hidden ? (
     <></>
   ) : (
     <Card>
-      <Title mt={0}>{post.title}</Title>
+      <Group position="apart">
+        <Title mt={0}>{post.title}</Title>
+        {post.link ? (
+          <a href={post.link}>
+            {" "}
+            <Image height={30} src={gitHubIcon} />
+          </a>
+        ) : (
+          <></>
+        )}
+      </Group>
       <ReactMarkdown
         components={{
           code({ node, inline, className, children, ...props }) {
