@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../redux/store";
-import { supabase } from "@/App";
+import { RootState } from "@/redux/store";
+import { supabase } from "@/utils/supabaseClient";
 
 import { PostType } from "@/types";
 
 export interface PostState {
-  posts: PostType[];
+  posts: PostType[] | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
